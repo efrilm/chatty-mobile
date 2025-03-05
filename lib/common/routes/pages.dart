@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../pages/frame/sign_in/index.dart';
 import '../../pages/frame/welcome/index.dart';
 import '../../pages/message/index.dart';
 import '../middlewares/middlewares.dart';
@@ -20,11 +21,11 @@ class AppPages {
       page: () => const WelcomePage(),
       binding: WelcomeBinding(),
     ),
-    // GetPage(
-    //   name: AppRoutes.SIGN_IN,
-    //   page: () => SignInPage(),
-    //   binding: SignInBinding(),
-    // ),
+    GetPage(
+      name: AppRoutes.SIGN_IN,
+      page: () => const SignInPage(),
+      binding: SignInBinding(),
+    ),
 
     // 需要登录
     // GetPage(
