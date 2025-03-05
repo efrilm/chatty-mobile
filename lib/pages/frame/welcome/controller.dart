@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../common/routes/routes.dart';
 import 'state.dart';
 
 class WelcomeController extends GetxController {
@@ -11,6 +12,6 @@ class WelcomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    print('Welcome Controller Ready');
+    Future.delayed(const Duration(seconds: 3), () => Get.offAllNamed(AppRoutes.Message));
   }
 }
