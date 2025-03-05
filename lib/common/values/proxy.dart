@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 // 是否启用代理
 const PROXY_ENABLE = false;
 

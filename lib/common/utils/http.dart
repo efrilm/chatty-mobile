@@ -4,12 +4,12 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:chatty/common/store/store.dart';
-import 'package:chatty/common/utils/utils.dart';
-import 'package:chatty/common/values/values.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart' hide FormData;
+
+import '../store/store.dart';
+import '../values/values.dart';
+import 'utils.dart';
 
 class HttpUtil {
   static final HttpUtil _instance = HttpUtil._internal();
@@ -50,7 +50,7 @@ class HttpUtil {
       responseType: ResponseType.json,
     );
 
-    dio = new Dio(options);
+    dio = Dio(options);
 
     // ignore: deprecated_member_use
     (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
@@ -79,7 +79,7 @@ class HttpUtil {
         // 如果你想终止请求并触发一个错误,你可以 reject 一个`DioError`对象,如`handler.reject(error)`，
         // 这样请求将被中止并触发异常，上层catchError会被调用。
       },
-      onError: (DioError e, handler) {
+      onError: (DioException e, handler) {
         // Do something with response error
         Loading.dismiss();
         ErrorEntity eInfo = createErrorEntity(e);
@@ -97,7 +97,7 @@ class HttpUtil {
 
   // 错误处理
   void onError(ErrorEntity eInfo) {
-    print('error.code -> ' + eInfo.code.toString() + ', error.message -> ' + eInfo.message);
+    print('error.code -> ${eInfo.code}, error.message -> ${eInfo.message}');
     switch (eInfo.code) {
       case 401:
         UserStore.to.onLogout();
@@ -201,9 +201,7 @@ class HttpUtil {
     bool cacheDisk = false,
   }) async {
     Options requestOptions = options ?? Options();
-    if (requestOptions.extra == null) {
-      requestOptions.extra = Map();
-    }
+    requestOptions.extra ??= <String, dynamic>{};
     requestOptions.extra!.addAll({
       "refresh": refresh,
       "noCache": noCache,
@@ -376,6 +374,7 @@ class ErrorEntity implements Exception {
   String message = "";
   ErrorEntity({required this.code, required this.message});
 
+  @override
   String toString() {
     if (message == "") return "Exception";
     return "Exception: code $code, $message";

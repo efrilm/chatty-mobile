@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class SyncMessageRequestEntity {
   int? msgid;
   SyncMessageRequestEntity({
@@ -7,12 +5,12 @@ class SyncMessageRequestEntity {
   });
 
   Map<String, dynamic> toJson() => {
-    "msgid": msgid,
-  };
+        "msgid": msgid,
+      };
 }
 
 class CallRequestEntity {
-  String? call_type;//1. voice 2. video
+  String? call_type; //1. voice 2. video
   String? to_token;
   String? to_name;
   String? to_avatar;
@@ -27,12 +25,12 @@ class CallRequestEntity {
   });
 
   Map<String, dynamic> toJson() => {
-    "call_type": call_type,
-    "to_token": to_token,
-    "to_name": to_name,
-    "to_avatar": to_avatar,
-    "doc_id": doc_id,
-  };
+        "call_type": call_type,
+        "to_token": to_token,
+        "to_name": to_name,
+        "to_avatar": to_avatar,
+        "doc_id": doc_id,
+      };
 }
 
 class CallTokenRequestEntity {
@@ -43,8 +41,8 @@ class CallTokenRequestEntity {
   });
 
   Map<String, dynamic> toJson() => {
-    "channel_name": channel_name,
-  };
+        "channel_name": channel_name,
+      };
 }
 
 class ChatRequestEntity {
@@ -59,10 +57,10 @@ class ChatRequestEntity {
   });
 
   Map<String, dynamic> toJson() => {
-    "content": content,
-    "type": type,
-    "to_token": to_token,
-  };
+        "content": content,
+        "type": type,
+        "to_token": to_token,
+      };
 }
 
 class Chat {
@@ -84,8 +82,7 @@ class Chat {
     this.created_at,
   });
 
-  factory Chat.fromJson(Map<String, dynamic> json) =>
-      Chat(
+  factory Chat.fromJson(Map<String, dynamic> json) => Chat(
         from_token: json["from_token"],
         to_token: json["to_token"],
         msgid: json["msgid"],
@@ -96,15 +93,14 @@ class Chat {
       );
 
   Map<String, dynamic> toJson() => {
-    "from_token": from_token ,
-    "to_token": to_token ,
-    "msgid": msgid ,
-    "content": content,
-    "type": type,
-    "status": status,
-    "created_at": created_at,
-  };
-
+        "from_token": from_token,
+        "to_token": to_token,
+        "msgid": msgid,
+        "content": content,
+        "type": type,
+        "status": status,
+        "created_at": created_at,
+      };
 }
 
 class MsgListcontent {
@@ -130,8 +126,7 @@ class MsgListcontent {
     this.created_at,
   });
 
-  factory MsgListcontent.fromJson(Map<String, dynamic> json) =>
-      MsgListcontent(
+  factory MsgListcontent.fromJson(Map<String, dynamic> json) => MsgListcontent(
         from_token: json["from_token"],
         from_avatar: json["from_avatar"],
         from_name: json["from_name"],
@@ -144,16 +139,16 @@ class MsgListcontent {
       );
 
   Map<String, dynamic> toJson() => {
-    "from_token": from_token ,
-    "from_name": from_name ,
-    "from_avatar": from_avatar ,
-    "to_token": to_token ,
-    "msgid": msgid ,
-    "content": content,
-    "type": type,
-    "status": status,
-    "created_at": created_at,
-  };
+        "from_token": from_token,
+        "from_name": from_name,
+        "from_avatar": from_avatar,
+        "to_token": to_token,
+        "msgid": msgid,
+        "content": content,
+        "type": type,
+        "status": status,
+        "created_at": created_at,
+      };
 }
 
 class SyncMessageResponseEntity {
@@ -167,20 +162,16 @@ class SyncMessageResponseEntity {
     this.data,
   });
 
-  factory SyncMessageResponseEntity.fromJson(Map<String, dynamic> json) =>
-      SyncMessageResponseEntity(
+  factory SyncMessageResponseEntity.fromJson(Map<String, dynamic> json) => SyncMessageResponseEntity(
         code: json["code"],
         msg: json["msg"],
-        data: json["data"] == null
-            ? []
-            : List<MsgListcontent>.from(json["data"].map((x) => MsgListcontent.fromJson(x))),
+        data:
+            json["data"] == null ? [] : List<MsgListcontent>.from(json["data"].map((x) => MsgListcontent.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-    "counts": code ,
-    "msg": msg ,
-    "data": data == null
-        ? []
-        : List<dynamic>.from(data!.map((x) => x.toJson())),
-  };
+        "counts": code,
+        "msg": msg,
+        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+      };
 }

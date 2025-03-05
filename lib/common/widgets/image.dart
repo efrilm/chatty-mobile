@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chatty/common/values/values.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../values/values.dart';
 
 Widget netImageCached(
   String url, {
@@ -24,7 +25,7 @@ Widget netImageCached(
         ),
       ),
     ),
-    errorWidget: (context, url, error) => Image(
+    errorWidget: (context, url, error) => const Image(
       image: AssetImage('assets/images/feature-1.png'),
     ),
   );

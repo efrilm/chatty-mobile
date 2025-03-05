@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'package:chatty/common/entities/entities.dart';
-import 'package:chatty/common/routes/names.dart';
-import 'package:chatty/common/services/services.dart';
-import 'package:chatty/common/values/values.dart';
 import 'package:get/get.dart';
+
+import '../entities/entities.dart';
+import '../routes/routes.dart';
+import '../services/services.dart';
+import '../values/storage.dart';
 
 class UserStore extends GetxController {
   static UserStore get to => Get.find();
@@ -42,7 +43,7 @@ class UserStore extends GetxController {
     // var result = await UserAPI.profile();
     // _profile(result);
     // _isLogin.value = true;
-   return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
+    return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
   }
 
   // 保存 profile
@@ -55,7 +56,7 @@ class UserStore extends GetxController {
 
   // 注销
   Future<void> onLogout() async {
-   // if (_isLogin.value) await UserAPI.logout();
+    // if (_isLogin.value) await UserAPI.logout();
     await StorageService.to.remove(STORAGE_USER_TOKEN_KEY);
     await StorageService.to.remove(STORAGE_USER_PROFILE_KEY);
     _isLogin.value = false;

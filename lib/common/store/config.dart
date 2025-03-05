@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:chatty/common/services/services.dart';
-import 'package:chatty/common/values/values.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
+
+import '../services/services.dart';
+import '../values/values.dart';
 
 class ConfigStore extends GetxController {
   static ConfigStore get to => Get.find();
@@ -11,18 +12,19 @@ class ConfigStore extends GetxController {
   bool isCallVocie = false;
   PackageInfo? _platform;
   String get version => _platform?.version ?? '-';
-  bool get isRelease => bool.fromEnvironment("dart.vm.product");
-  Locale locale = Locale('en', 'US');
+  bool get isRelease => const bool.fromEnvironment("dart.vm.product");
+  Locale locale = const Locale('en', 'US');
   List<Locale> languages = [
-    Locale('en', 'US'),
-    Locale('zh', 'CN'),
+    const Locale('en', 'US'),
+    const Locale('zh', 'CN'),
   ];
 
-
   @override
+  // ignore: unnecessary_overrides
   void onInit() {
     super.onInit();
-  ///  isFirstOpen = StorageService.to.getBool(STORAGE_DEVICE_FIRST_OPEN_KEY);
+
+    ///  isFirstOpen = StorageService.to.getBool(STORAGE_DEVICE_FIRST_OPEN_KEY);
   }
 
   Future<void> getPlatform() async {

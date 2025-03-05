@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 // 是否启用缓存
 const CACHE_ENABLE = false;
 

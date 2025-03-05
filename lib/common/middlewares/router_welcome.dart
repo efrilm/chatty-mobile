@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:chatty/common/routes/routes.dart';
-import 'package:chatty/common/store/store.dart';
 
 import 'package:get/get.dart';
+
+import '../routes/routes.dart';
+import '../store/store.dart';
 
 /// 第一次欢迎页面
 class RouteWelcomeMiddleware extends GetMiddleware {
   // priority 数字小优先级高
   @override
+  // ignore: overridden_fields
   int? priority = 0;
 
   RouteWelcomeMiddleware({required this.priority});
@@ -18,9 +20,9 @@ class RouteWelcomeMiddleware extends GetMiddleware {
     if (ConfigStore.to.isFirstOpen == false) {
       return null;
     } else if (UserStore.to.isLogin == true) {
-      return RouteSettings(name: AppRoutes.Message);
+      return const RouteSettings(name: AppRoutes.Message);
     } else {
-      return RouteSettings(name: AppRoutes.SIGN_IN);
+      return const RouteSettings(name: AppRoutes.SIGN_IN);
     }
   }
 }
